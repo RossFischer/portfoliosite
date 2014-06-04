@@ -13,7 +13,17 @@
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,600,700" rel="stylesheet" />
 		<script src="js/jquery.min.js"></script>
 		<script src="js/config.js"></script>
+		<script src="js/contactform.js"></script>
 		<script src="js/skel.min.js"></script>
+		<script>
+		  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		  ga('create', 'UA-51272308-1', 'uxross.com');
+		  ga('send', 'pageview');  		  
+		</script>
 		<noscript>
 			<link rel="stylesheet" href="css/skel-noscript.css" />
 			<link rel="stylesheet" href="css/style.css" />
@@ -32,6 +42,7 @@
 					<li><a href="#work">Skills</a></li>
 					<li><a href="#portfolio">Portfolio</a></li>
 					<li><a href="#contact">Contact</a></li>
+					<li><a href="RossFResume.pdf">Resume (pdf)</a></li>
 				</ul>
 			</nav>
 
@@ -44,10 +55,10 @@
 						</div>
 						<div class="8u">
 							<header>
-								<h1>Howdy. I'm <strong>Ross Fischer</strong>.</h1>
+								<h1>Hello. I'm <strong>Ross Fischer</strong>.</h1>
 							</header>
 							<p>I am a <strong>User Experience Designer</strong> with a <strong>collaborative</strong> design approach and strengths in <strong>user research, prototyping and front end development</strong>.</p>
-							<a href="#work" class="button button-big hidesmall">Learn about what I do</a>
+							<span class="hidesmall"><a href="#portfolio" class="button button-big">Jump straight to my projects</a></span>
 						</div>
 					</div>
 				</article>
@@ -57,8 +68,8 @@
 			<div class="wrapper wrapper-style2">
 				<article id="work">
 					<header>
-						<h2>I love to design and build interesting things.</h2>
-						<span>It all stems from user empathy and understanding.</span>
+						<h2>My strongest design skills:</h2>
+						<span>Good design always stems from user empathy and understanding.</span>
 					</header>
 					<div class="container">
 						<div class="row">
@@ -96,8 +107,8 @@
 			<div class="wrapper wrapper-style3">
 				<article id="portfolio">
 					<header>
-						<h2>Awesome work makes happy clients.</h2>
-						<span>No big blocks of text, walls of Post-It's, or tiny, blurry pictures of sketches here. I promise.</span>
+						<h2>Projects:</h2>
+						<span>No big blocks of text, walls of Post-It's, or tiny, blurry pictures of sketches here, I promise.</span>
 					</header>
 					<div class="container">
 						<div class="row">
@@ -121,37 +132,12 @@
 							</div>
 							<div class="4u">
 								<article class="box box-style2">
-									<a href="patelco.html" class="image image-full"><img src="images/portfolio03.png" alt="Patelco app photo" /></a>
+									<a href="patelco.html" class="image image-full"><img src="images/portfolio03.jpg" alt="Patelco app photo" /></a>
 									<h3><a href="patelco.html">Patelco</a></h3>
 									<p>Mobile banking app design, emphasizing vital tasks.</p>
 								</article>
 							</div>
 						</div>
-						<!--
-						<div class="row">
-							<div class="4u">
-								<article class="box box-style2">
-									<a href="http://flypixel.com/n33-pattern-set-1/3522389001865317" class="image image-full"><img src="images/portfolio04.jpg" alt="" /></a>
-									<h3><a href="http://flypixel.com/n33-pattern-set-1/3522389001865317">Tempus dolore</a></h3>
-									<p>Ornare nulla proin odio consequat.</p>
-								</article>
-							</div>
-							<div class="4u">
-								<article class="box box-style2">
-									<a href="http://flypixel.com/cityscape/9803996277226316" class="image image-full"><img src="images/portfolio05.jpg" alt="" /></a>
-									<h3><a href="http://flypixel.com/cityscape/9803996277226316">Feugiat aliquam</a></h3>
-									<p>Ornare nulla proin odio consequat.</p>
-								</article>
-							</div>
-							<div class="4u">
-								<article class="box box-style2">
-									<a href="http://flypixel.com/n33" class="image image-full"><img src="images/portfolio06.jpg" alt="" /></a>
-									<h3><a href="http://flypixel.com/n33">Sed amet ornare</a></h3>
-									<p>Ornare nulla proin odio consequat.</p>
-								</article>
-							</div>
-						</div>
-						-->
 					</div>
 					<footer class="hidesmall">
 						<p>Think I would be a good fit for your team?</p>
@@ -163,21 +149,23 @@
 		<!-- Contact -->
 			<div class="wrapper wrapper-style4">
 				<article id="contact" class="container small">
-					<header>
+					<header id="cta">
 						<h2>Want to hire me? Get in touch!</h2>
 						<span>Send me a message here, or look below to find me elsewhere on the tubes.</span>
 					</header>
 					<div>
 						<div class="row">
-							<div class="12u">
-								<form method="post" action="send.php">
+							<div class="12u" id="contact_form">
+								<form action="" onsubmit="return validateForm()">
 									<div>
 										<div class="row half">
 											<div class="6u">
-												<input type="text" name="name" id="name" placeholder="Name" />
+												<input type="text" name="name" id="name" placeholder="Name"  onblur="validateName(name)" />
+												<span id="nameError" class="error" style="display: none;">You can only use alphabetic characters, hyphens and apostrophes.</span>
 											</div>
 											<div class="6u">
-												<input type="text" name="email" id="email" placeholder="Email" />
+												<input type="text" name="email" id="email" type="email" placeholder="Email"  onblur="validateEmail(value)" />
+												<span id="emailError" class="error" style="display: none;">Please enter a valid email address.</span>
 											</div>
 										</div>
 										<div class="row half">
@@ -192,7 +180,7 @@
 										</div>
 										<div class="row">
 											<div class="12u">
-												<a href="#" class="button form-button-submit">Send Message</a>
+												<a href="#" class="button form-button-submit" id="submitter">Send Message</a>
 												<a href="#" class="button button-alt form-button-reset">Clear Form</a>
 											</div>
 										</div>
@@ -209,22 +197,6 @@
 									<li class="linkedin"><a href="https://www.linkedin.com/in/rossfischer/" class="fa fa-linkedin"><span>LinkedIn</span></a></li>
 									<li class="facebook"><a href="http://ux.stackexchange.com/users/46654/rossf" class="fa fa-stack-exchange"><span>Stack Exchange</span></a></li>
 									<li class="github"><a href="http://github.com/RossFischer" class="fa fa-github"><span>Github</span></a></li>
-									<!--
-									<li class="dribbble"><a href="http://dribbble.com/n33" class="fa fa-dribbble"><span>Dribbble</span></a></li>
-									<li class="tumblr"><a href="#" class="fa fa-tumblr"><span>Tumblr</span></a></li>
-									<li class="facebook"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-									<li class="rss"><a href="#" class="fa fa-rss"><span>RSS</span></a></li>
-									<li class="instagram"><a href="#" class="fa fa-instagram"><span>Instagram</span></a></li>
-									<li class="foursquare"><a href="#" class="fa fa-foursquare"><span>Foursquare</span></a></li>
-									<li class="skype"><a href="#" class="fa fa-skype"><span>Skype</span></a></li>
-									<li class="soundcloud"><a href="#" class="fa fa-soundcloud"><span>Soundcloud</span></a></li>
-									<li class="youtube"><a href="#" class="fa fa-youtube"><span>YouTube</span></a></li>
-									<li class="blogger"><a href="#" class="fa fa-blogger"><span>Blogger</span></a></li>
-									<li class="flickr"><a href="#" class="fa fa-flickr"><span>Flickr</span></a></li>
-									<li class="vimeo"><a href="#" class="fa fa-vimeo"><span>Vimeo</span></a></li>
-									<li class="googleplus"><a href="#" class="fa fa-google-plus"><span>Google+</span></a></li>
-
-									-->
 								</ul>
 								<hr />
 							</div>
@@ -233,10 +205,6 @@
 					<footer>
 						<ul id="copyright">
 							<li>&copy; 2014 Ross Fischer</li>
-						<!--
-							<li>Images: <a href="http://fotogrph.com">fotogrph</a></li>
-							<li>Design: <a href="http://html5up.net/">HTML5 UP</a></li>
-						-->
 						</ul>
 					</footer>
 				</article>
